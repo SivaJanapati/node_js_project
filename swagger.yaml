@@ -1,0 +1,52 @@
+
+swagger: '2.0'
+info:
+  title: Public API Service
+  description: API endpoints for fetching data from a public API
+  version: '1.0'
+paths:
+  /public-api:
+    get:
+      summary: Fetch data from the public API
+      parameters:
+        - name: category
+          in: query
+          description: Filter data by category
+          type: string
+        - name: limit
+          in: query
+          description: Limit the number of results
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/DataEntry'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+definitions:
+  DataEntry:
+    type: object
+    properties:
+      API:
+        type: string
+      Description:
+        type: string
+      Auth:
+        type: string
+      HTTPS:
+        type: boolean
+      Cors:
+        type: string
+      Link:
+        type: string
+      Category:
+        type: string
